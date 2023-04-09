@@ -48,7 +48,7 @@ catch (error) {
              console.log(error);
          }
          const token =JWT.sign({email}, "nfb32iur32ibfqfvi3vf932bg932g", {expiresIn: 360000});
-        //  console.log(token);
+        console.log(token);
           return res.status(200).json({user: user})
         }
     }
@@ -76,9 +76,9 @@ catch (error) {
         }
         else{
             const token =JWT.sign({email}, "nfb32iur32ibfqfvi3vf932bg932g", {expiresIn: 360000});
-            // console.log(token);
+             console.log(token);
             
-        return res.status(200).json({message:"login success"})}
+        return res.status(200).json({message:"login success",token:token})}
     }
 }
 updateuser=async(req, res)=>{
@@ -98,15 +98,17 @@ updateuser=async(req, res)=>{
     }
     await user.save();
     return res.json({user:user});
-}
-deleteuser=async(req, res, next)=>{
+},
+deleteuser=async(req, res)=>{
     let user;
-    user=await User.findById(req.params.id)
+    let id=req.params.id;
+    user=await User.findById({id})
+    console.log(user)
     if(!user){
         return res.json({msg:"No user found"})
     }
-    user=await User.findByIdAndDelete(req.params.id)
-    await user.save();
+    let a=await User.findByIdAndDelete(req.params.id)
+    await a.save();
     return res.json({msg:"user deleted successfully"})
 }
 
