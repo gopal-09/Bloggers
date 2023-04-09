@@ -97,7 +97,7 @@ updateuser=async(req, res)=>{
         console.log(err);
     }
     await user.save();
-    return res.json({user:user})
+    return res.json({user:user});
 }
 deleteuser=async(req, res, next)=>{
     let user;

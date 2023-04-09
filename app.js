@@ -6,7 +6,7 @@ const app= express()
 app.use(express.json())
 app.use('/api/user', router)
 app.use('/api/post',postRouter)
-mongoose.connect('mongodb://0.0.0.0:27017/varlyq', {
+mongoose.connect('mongodb+srv://gopalreddy6197:admin@cluster0.ioayto5.mongodb.net/?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
@@ -16,4 +16,7 @@ mongoose.connect('mongodb://0.0.0.0:27017/varlyq', {
   .catch((error) => {
     console.error('Error connecting to MongoDB:', error);
   });
+  app.get('/',(req, res) => {
+    res.sendFile('hello')
+  })
 app.listen(3000,(req,res)=>{console.log('server hitt')})

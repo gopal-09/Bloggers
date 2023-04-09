@@ -53,6 +53,7 @@ updatepost=async (req, res, next) => {
     console.error(error.message);
     res.status(500).send('Server Error');
   }
+  
 }
 deletepost=async(req,res,next)=>{
   let postId=req.params.id;
