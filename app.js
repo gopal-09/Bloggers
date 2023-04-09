@@ -4,9 +4,10 @@ const postRouter=require('./routes/post-routes')
 const router= require('./routes/user-routes')
 const app= express()
 app.use(express.json())
+require("dotenv").config()
 app.use('/api/user', router)
 app.use('/api/post',postRouter)
-mongoose.connect('mongodb+srv://gopalreddy6197:admin@cluster0.ioayto5.mongodb.net/?retryWrites=true&w=majority', {
+mongoose.connect(process.env.Mongodb_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
