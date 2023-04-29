@@ -59,9 +59,12 @@ updatepost=async (req, res, next) => {
 }
 deletepost=async(req,res,next)=>{
   let postId=req.params.id;
-  const userId =req.user
+  const email =req.user
+  const objectId = mongoose.Types.ObjectId;
+  let post
   try{
-    const post = await Post.findOne({ _id: postId, createdBy: userId });}
+    const user = await User.findOne({email})
+     post = await Post.findOneAndDelete({ _id: new objectId(postId), createdBy: user._id });}
     catch(err){
       console.log(err)
     }
@@ -69,35 +72,11 @@ deletepost=async(req,res,next)=>{
       return res.status(404).json({msg:'Post not found or unauthorized to update'});
     }
 
-  try{
-        let post= await Post.findByIdAndDelete(postId)
-  }
-  catch (error) {
-    console.log(error.message);
-  }
+  
   try{
   return res.json({msg:"post deleted successfully"})}
   catch(err){
     console.log(err);
   }
 }
-// const delemp= async(req,res)=>{
-//     let name = req.params.name
-//     let emp;
-//     try{
-//     emp=await Emp.findOneAndDelete(name)}
-    
-//     catch(err){
-//         console.log(err)
-//     }
-//     try{
-        
-//         return res.json({msg:"employee deleted"})
-//     }
-//     catch(err){
-//         console.log(err)
-//     }
-
-
-
 module.exports ={createPost,getall,updatepost,deletepost};
