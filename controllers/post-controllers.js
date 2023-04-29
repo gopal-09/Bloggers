@@ -11,10 +11,10 @@ createPost=async (req,res)=>{
           message
         });
     const savedPost = await post.save();
-        return res.status(201).json(savedPost);
+        return res.status(201).json({savedPost});
       } catch (error) {
         console.error(error.message);
-        return res.status(500).send('Server Error');
+        return res.status(500).json({msg:'Server Error'});
       }
 }
 getall=async (req, res, next) => {
@@ -39,7 +39,7 @@ updatepost=async (req, res, next) => {
     let post = await Post.findOne({ _id: new objectId(postId), createdBy: user._id });
     // console.log(post);
     if (!post) {
-      return res.status(404).send('Post not found or unauthorized to update');
+      return res.status(404).json({msg:'Post not found or unauthorized to update'});
     }
     try{
       post= await Post.findByIdAndUpdate(req.params.id,{createdBy,message,comments})
@@ -53,7 +53,7 @@ updatepost=async (req, res, next) => {
     res.status(200).json(updatedPost);
   } catch (error) {
     console.error(error.message);
-    res.status(500).send('Server Error');
+    res.status(500).json({msg:'Server Error'});
   }
 
 }
@@ -63,7 +63,7 @@ deletepost=async(req,res,next)=>{
     console.log(userId)
     const post = await Post.findOne({ _id: postId, createdBy: userId });
     if (!post) {
-      return res.status(404).send('Post not found or unauthorized to update');
+      return res.status(404).json({msg:'Post not found or unauthorized to update'});
     }
 
   try{
