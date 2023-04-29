@@ -99,14 +99,22 @@ updateuser=async(req, res)=>{
     return res.json({msg:"user updated successfully"});
 },
 deleteuser=async(req, res)=>{
-    let user;
+    let user,a;
     let id=req.params.id;
-    user=await User.findById(id)
+    try{
+    user=await User.findById(id)}
+    catch(err){
+        console.log(err)
+    }
     //console.log(user)
     if(!user){
         return res.json({msg:"No user found"})
     }
-    let a=await User.findByIdAndDelete(req.params.id)
+    try{
+     a=await User.findByIdAndDelete(req.params.id)}
+    catch(err){
+        console.log(err)
+    }
     await a.save();
     return res.json({msg:"user deleted successfully"})
 }
