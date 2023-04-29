@@ -115,9 +115,29 @@ deleteuser=async(req, res)=>{
     catch(err){
         console.log(err)
     }
-    await a.save();
-    return res.json({msg:"user deleted successfully"})
+    //await a.save();
+    try{
+    return res.json({msg:"user deleted successfully"})}
+    catch(err){
+        console.log(err)
+    }
 }
+// const delemp= async(req,res)=>{
+//     let name = req.params.name
+//     let emp;
+//     try{
+//     emp=await Emp.findOneAndDelete(name)}
+    
+//     catch(err){
+//         console.log(err)
+//     }
+//     try{
+        
+//         return res.json({msg:"employee deleted"})
+//     }
+//     catch(err){
+//         console.log(err)
+//     }
 
 
 
