@@ -101,8 +101,8 @@ updateuser=async(req, res)=>{
 deleteuser=async(req, res)=>{
     let user;
     let id=req.params.id;
-    user=await User.findById({id})
-    console.log(user)
+    user=await User.findById(id)
+    //console.log(user)
     if(!user){
         return res.json({msg:"No user found"})
     }
