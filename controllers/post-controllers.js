@@ -42,7 +42,7 @@ updatepost=async (req, res, next) => {
       return res.status(404).json({msg:'Post not found or unauthorized to update'});
     }
     try{
-      post= await Post.findByIdAndUpdate(req.params.id,{createdBy,message,comments})
+      post= await Post.findByIdAndUpdate(req.params.id,{message,comments})
       console.log(post);
    }
    catch(err){
