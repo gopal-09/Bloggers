@@ -50,7 +50,7 @@ updatepost=async (req, res, next) => {
    }
 
     const updatedPost = await post.save();
-    res.status(200).json(updatedPost);
+    res.status(200).json({msg:"post updated successfully"});
   } catch (error) {
     console.error(error.message);
     res.status(500).json({msg:'Server Error'});
@@ -60,21 +60,44 @@ updatepost=async (req, res, next) => {
 deletepost=async(req,res,next)=>{
   let postId=req.params.id;
   const userId =req.user
-    console.log(userId)
-    const post = await Post.findOne({ _id: postId, createdBy: userId });
+  try{
+    const post = await Post.findOne({ _id: postId, createdBy: userId });}
+    catch(err){
+      console.log(err)
+    }
     if (!post) {
       return res.status(404).json({msg:'Post not found or unauthorized to update'});
     }
 
   try{
         let post= await Post.findByIdAndDelete(postId)
-        await post.save()
   }
   catch (error) {
     console.log(error.message);
   }
-  return res.json({msg:"post deleted successfully"})
+  try{
+  return res.json({msg:"post deleted successfully"})}
+  catch(err){
+    console.log(err);
+  }
 }
+// const delemp= async(req,res)=>{
+//     let name = req.params.name
+//     let emp;
+//     try{
+//     emp=await Emp.findOneAndDelete(name)}
+    
+//     catch(err){
+//         console.log(err)
+//     }
+//     try{
+        
+//         return res.json({msg:"employee deleted"})
+//     }
+//     catch(err){
+//         console.log(err)
+//     }
+
 
 
 module.exports ={createPost,getall,updatepost,deletepost};

@@ -122,22 +122,6 @@ deleteuser=async(req, res)=>{
         console.log(err)
     }
 }
-// const delemp= async(req,res)=>{
-//     let name = req.params.name
-//     let emp;
-//     try{
-//     emp=await Emp.findOneAndDelete(name)}
-    
-//     catch(err){
-//         console.log(err)
-//     }
-//     try{
-        
-//         return res.json({msg:"employee deleted"})
-//     }
-//     catch(err){
-//         console.log(err)
-//     }
 
 
 
