@@ -96,7 +96,7 @@ updateuser=async(req, res)=>{
         console.log(err);
     }
     await user.save();
-    return res.json({user:user});
+    return res.json({msg:"user updated successfully"});
 },
 deleteuser=async(req, res)=>{
     let user;
