@@ -1,4 +1,4 @@
-const { response } = require('express')
+const express = require('express')
 const User=require('../models/users')
 const JWT = require("jsonwebtoken")
 
@@ -11,13 +11,13 @@ const getAllUser = async (req, res, next) => {
         users = await User.find();}
 catch (error) {
         console.log(error);}
-        res.status(200).json({users});
+        return res.status(200).json({users});
 }
  const signup= async (req,res,next) => {
     const{name,email,mobile,password}=req.body;
     const errors = validationResult(req);
     if(!errors.isEmpty())
-    res.send("validation error: " + errors)
+    return res.json({"errors": errors})
     else{
      let existingUser;
      try {
@@ -28,7 +28,7 @@ catch (error) {
          } 
          if(existingUser) {
             //console.log(existingUser)
-              res.json({message:'user exist'})  
+              return res.json({message:'user exist'})  
          }
          else{
          const hashedPassword=bcrypt.hashSync(password)
