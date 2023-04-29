@@ -48,7 +48,7 @@ catch (error) {
          }
          const token =JWT.sign({email}, "nfb32iur32ibfqfvi3vf932bg932g", {expiresIn: 360000});
         console.log(token);
-          return res.status(200).json({user: user})
+          return res.status(200).json({user: user,token: token})
         }
     }
 }
