@@ -32,7 +32,7 @@ updatepost=async (req, res, next) => {
     console.log(req.params);
     const  postId  = req.params.id;
     console.log(postId);
-    const { createdBy,message,comments } = req.body;
+    const { message,comments } = req.body;
     const email =req.user
     // console.log(userId)
     const user = await User.findOne({email})
