@@ -4,7 +4,6 @@ const JWT = require("jsonwebtoken")
 
  const bcrypt =  require('bcryptjs')
  const { check, validationResult } = require("express-validator");
-const { findById } = require('../models/users');
 const getAllUser = async (req, res, next) => {
     let users;
     try {

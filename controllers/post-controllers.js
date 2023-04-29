@@ -43,6 +43,7 @@ updatepost=async (req, res, next) => {
     }
     try{
       post= await Post.findByIdAndUpdate(req.params.id,{createdBy,message,comments})
+      console.log(post);
    }
    catch(err){
        console.log(err);
