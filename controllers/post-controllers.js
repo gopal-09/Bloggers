@@ -61,10 +61,11 @@ deletepost=async(req,res,next)=>{
   let postId=req.params.id;
   const email =req.user
   const objectId = mongoose.Types.ObjectId;
+  //new objectId(postId)
   let post
   try{
     const user = await User.findOne({email})
-     post = await Post.findOneAndDelete({ _id: new objectId(postId), createdBy: user._id });}
+     post = await Post.findOneAndDelete({ _id:postId, createdBy: user._id });}
     catch(err){
       console.log(err)
     }
