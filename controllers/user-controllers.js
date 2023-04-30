@@ -1,9 +1,9 @@
 const express = require('express')
 const User=require('../models/users')
 const JWT = require("jsonwebtoken")
-
+const { check, validationResult } = require("express-validator");
  const bcrypt =  require('bcryptjs')
- const { check, validationResult } = require("express-validator");
+
 const getAllUser = async (req, res, next) => {
     let users;
     try {
@@ -122,8 +122,4 @@ deleteuser=async(req, res)=>{
         console.log(err)
     }
 }
-
-
-
-
 module.exports = {getAllUser,signup,login,updateuser,deleteuser}

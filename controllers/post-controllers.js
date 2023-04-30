@@ -80,4 +80,18 @@ deletepost=async(req,res,next)=>{
     console.log(err);
   }
 }
-module.exports ={createPost,getall,updatepost,deletepost};
+pagenation=async(req,res)=>{
+  itemsPerPage=1;
+  const page = parseInt(req.query.page) || 1;
+  const skip = (page - 1) * itemsPerPage
+  try {
+    const blogs = await Post.find().skip(skip).limit(itemsPerPage);
+    return res.json({
+      blogs,
+      currentPage: page
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+}
+module.exports ={createPost,getall,updatepost,deletepost,pagenation};
