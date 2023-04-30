@@ -1,6 +1,6 @@
 const { response } = require('express')
 const mongoose = require('mongoose')
-
+//connect to server
 const User = require('../models/users')
 const Post=require('../models/posts')
 createPost=async (req,res)=>{
