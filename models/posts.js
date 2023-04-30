@@ -21,30 +21,63 @@ const Schema=mongoose.Schema;
           type: String,
           required: true
         },
-        comments: [
+        comments:[
           {
             sentBy: {
+                    type:mongoose.Schema.Types.ObjectId,
+                    ref: 'user',
+                    required: true
+                  },
+                  comment:{
+                    type: String,
+                    required: true
+                  },
+                  sentAt: {
+                          type: Date,
+                          default: Date.now,
+                          required: true
+                        }
+          }
+        ],
+        likes:[
+          {
+            likedBy: {
               type:mongoose.Schema.Types.ObjectId,
               ref: 'user',
               required: true
             },
-            comment:{
-              type: String,
-              required: true
-            },
-            sentAt: {
-              type: Date,
-              default: Date.now,
-              required: true
-            },
-            liked: [
-              {
-                type:mongoose.Schema.Types.ObjectId,
-                ref: 'user'
-              }
-            ]
+            likedAt: {
+                    type: Date,
+                    default: Date.now,
+                    required: true
+                  }
+
           }
         ]
+        // comments: [
+        //   {
+        //     sentBy: {
+        //       type:mongoose.Schema.Types.ObjectId,
+        //       ref: 'user',
+        //       required: true
+        //     },
+        //     comment:{
+        //       type: String,
+        //       required: true
+        //     },
+        //     sentAt: {
+        //       type: Date,
+        //       default: Date.now,
+        //       required: true
+        //     },
+        //     liked: [
+        //       {
+        //         type:mongoose.Schema.Types.ObjectId,
+        //         ref: 'user'
+        //       }
+        //     ]
+        //   }
+        // ]
       }
       )
       
