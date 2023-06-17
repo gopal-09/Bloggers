@@ -25,35 +25,23 @@ const Schema=mongoose.Schema;
           {
             sentBy: {
                     type:mongoose.Schema.Types.ObjectId,
-                    ref: 'user',
-                    required: true
+                    ref: 'user'
                   },
                   comment:{
-                    type: String,
-                    required: true
+                    type: String
+
                   },
                   sentAt: {
                           type: Date,
-                          default: Date.now,
-                          required: true
+                          default: Date.now
                         }
           }
         ],
-        likes:[
-          {
-            likedBy: {
-              type:mongoose.Schema.Types.ObjectId,
-              ref: 'user',
-              required: true
-            },
-            likedAt: {
-                    type: Date,
-                    default: Date.now,
-                    required: true
-                  }
-
-          }
-        ]
+        likes: [
+               {
+                 type:mongoose.Schema.Types.ObjectId,
+                 ref: 'user'
+           }]
         // comments: [
         //   {
         //     sentBy: {

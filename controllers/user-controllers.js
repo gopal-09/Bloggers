@@ -81,8 +81,7 @@ catch (error) {
     }
 }
 updateuser=async(req, res)=>{
-    //console.log("hoi");
-    // let user;
+    
    let user = await User.findById(req.params.id)
     if(!user) return res.status(404).json({message:"User not found"})
     try{
@@ -106,7 +105,6 @@ deleteuser=async(req, res)=>{
     catch(err){
         console.log(err)
     }
-    //console.log(user)
     if(!user){
         return res.json({msg:"No user found"})
     }
